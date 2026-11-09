@@ -29,7 +29,7 @@ async function loadMine() {
   $('who').textContent = `${user.name} (${user.role}) `;
   $('logout').onclick = async () => { await api('/api/auth/logout', { method: 'POST' }).catch(() => {}); location.href = '/login.html'; };
   if (user.role === 'student') { $('mine').classList.remove('hidden'); $('studentsSec').classList.add('hidden'); loadMine(); }
-  if (user.role === 'maintenance') { $('roomsSec').classList.add('hidden'); return; }
+  if (user.role === 'maintenance') { location.href = '/portal.html'; return; }
   if (['admin', 'warden'].includes(user.role)) { $('studentsSec').classList.remove('hidden'); $('allocForm').classList.remove('hidden'); await loadStudents(); }
   if (user.role === 'admin') $('addForm').classList.remove('hidden');
   await loadRooms();
