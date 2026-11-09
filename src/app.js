@@ -17,6 +17,12 @@ app.use(
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/students', require('./routes/students'));
 app.use('/api/rooms', require('./routes/rooms'));
+app.use('/api/fees', require('./routes/fees'));
+app.use('/api/complaints', require('./routes/complaints'));
+app.use('/api/leave', require('./routes/leave'));
+app.use('/api/visitors', require('./routes/visitors'));
+app.use('/api/announcements', require('./routes/announcements'));
+app.use('/api/reports', require('./routes/reports'));
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
 app.use(express.static(path.join(__dirname, '..', 'public')));

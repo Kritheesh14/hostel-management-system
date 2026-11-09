@@ -17,6 +17,11 @@ const pool = require('../src/config/db');
       [u, hash, n, r]
     );
   }
+  const [su] = await pool.query("SELECT user_id FROM users WHERE username='student1'");
+  await pool.query(
+    "INSERT IGNORE INTO students (user_id, srn, name, email, course, year) VALUES (?, 'PES2UG24CS000', 'Demo Student', 'demo.student@example.com', 'B.Tech CSE', 3)",
+    [su[0].user_id]
+  );
   for (const block of ['A', 'B']) {
     for (let floor = 1; floor <= 2; floor++) {
       for (let n = 1; n <= 3; n++) {

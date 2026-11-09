@@ -1,0 +1,11 @@
+const router = require('express').Router();
+const c = require('../controllers/complaintController');
+const { requireRole } = require('../middleware/auth');
+router.post('/', requireRole('student'), c.create);
+router.get('/mine', requireRole('student'), c.mine);
+router.get('/assigned', requireRole('maintenance'), c.assigned);
+router.get('/staff', requireRole('admin', 'warden'), c.staff);
+router.get('/', requireRole('admin', 'warden'), c.list);
+router.put('/:id/assign', requireRole('admin', 'warden'), c.assign);
+router.put('/:id/status', requireRole('admin', 'warden', 'maintenance'), c.updateStatus);
+module.exports = router;
